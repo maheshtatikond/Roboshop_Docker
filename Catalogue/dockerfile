@@ -1,0 +1,10 @@
+FROM node:20
+#this creates the app directory in the container and sets it as the working directory for all subsequent commands
+WORKDIR /app
+COPY package.json .
+COPY *.js . 
+#. represents the current directory in the container, so this command copies all js files from the current directory on the host to the /app directory in the container
+RUN npm install
+ENV MONGODB="true" \
+    MONGO_URL="mongodb://mongodb:27017/catalogue"
+CMD ["node", "server.js"]    
