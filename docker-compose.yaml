@@ -24,8 +24,9 @@ services:
     ports:
       - "80:80"
     depends_on:
-      - Catalogue
-      - User
+      - catalogue
+      - user
+
 
   mongodb:
     build: ./mongodb # move to mongodb directory and execute docker build
