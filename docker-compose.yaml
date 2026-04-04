@@ -1,4 +1,9 @@
 services:
+  mongodb:
+    build: ./mongodb # move to mongodb directory and execute docker build
+    image: mahesh6419/mongodb:1.0.0 # docker build -t mahesh6419/mongodb:1.0.0 .
+    container_name: mongodb
+
   catalogue:
     build: ./catalogue
     image: mahesh6419/catalogue:1.0.0
@@ -17,6 +22,15 @@ services:
     image: redis:7.0
     container_name: redis
 
+  cart:
+    build: ./cart
+    image: mahesh6419/cart:1.0.0
+    container_name: cart
+    depends_on:
+      - redis
+     
+
+
   frontend:
     build: ./frontend
     image: mahesh6419/frontend:1.0.0
@@ -26,13 +40,10 @@ services:
     depends_on:
       - catalogue
       - user
+      - cart
 
-
-  mongodb:
-    build: ./mongodb # move to mongodb directory and execute docker build
-    image: mahesh6419/mongodb:1.0.0 # docker build -t mahesh6419/mongodb:1.0.0 .
-    container_name: mongodb
-
+  
+ 
 networks:
   default:
     driver: bridge
