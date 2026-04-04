@@ -74,7 +74,7 @@ file name: docker-compose.yaml
 
 docker compose up -d ----- to start the containers
 docker compose down --------- to stop the containers
-
+docker rm -f <conatiners name>
 
 
 #######
