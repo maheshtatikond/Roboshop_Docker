@@ -1,5 +1,5 @@
 services:
- Catalogue:
+  Catalogue:
     build: ./catalogue
     image: mahesh6419/catalogue:1.0.0
     container_name: catalogue
@@ -15,7 +15,7 @@ services:
 
   redis:
     image: redis:7.0
-    container_name: redis       
+    container_name: redis
 
   Frontend:
     build: ./frontend
@@ -24,10 +24,10 @@ services:
     depends_on:
       - Catalogue
       - User
-   
- mongodb:
+
+  mongodb:
     build: ./mongodb # move to mongodb directory and execute docker build
-    image: mahesh6419/mongodb:1.0.0 # docker build -t mahesh6419/mongodb:1.0.0 . 
+    image: mahesh6419/mongodb:1.0.0 # docker build -t mahesh6419/mongodb:1.0.0 .
     container_name: mongodb
 
 networks:
