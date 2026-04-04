@@ -69,4 +69,18 @@ need to create own bridge network
 ##docker push mahesh6419/frontend:1.0.0
 
 
+Writing docker compose file
+file name: docker-compose.yaml
 
+docker compose up -d ----- to start the containers
+docker compose down --------- to stop the containers
+
+
+
+#######
+ When I created the docker-compose.yaml file at first I named compose file as docker-compose.Yaml i tried to chnage it after 
+ pushing to the github but it is not accepting 
+ I did troubleshooting using 
+git mv docker-compose.Yaml docker-compose.yaml
+git commit -m "fix case issue in filename"
+git push origin main #########
