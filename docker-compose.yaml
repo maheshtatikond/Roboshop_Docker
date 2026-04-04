@@ -18,7 +18,7 @@ services:
     container_name: redis
 
   Frontend:
-    build: ./frontend
+    build: ./Frontend
     image: mahesh6419/frontend:1.0.0
     container_name: frontend
     ports:
