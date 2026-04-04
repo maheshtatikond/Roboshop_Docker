@@ -76,6 +76,8 @@ docker compose up -d ----- to start the containers
 docker compose down --------- to stop the containers
 docker rm -f <conatiners name>--- to remove the container
 docker compose up -d --build --- to rebuild the image
+docker stop $(docker ps -q)------ to stop conatiners at once
+docker rm -f $(docker ps -aq)
 
 
 #######
