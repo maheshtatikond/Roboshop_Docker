@@ -1,4 +1,20 @@
 
+Home location of docker Docker/var/lib/docker 
+While ceating the ec2 instance I have allocated 50GB storage 
+df -hT = to check the file system
+
+we allocated 2 GB to   /dev/mapper/RootVG-varVol    xfs       2.0G  583M  1.4G  30% /var
+
+now we need to claim 50 GB storage 
+To resize disk:
+sudo growpart /dev/nvme0n1 4
+sudo lvextend -L +30G /dev/RootVG/varVol
+sudo xfs_growfs /var
+Now we will see /var got 32 GB
+
+
+
+
 Install below packages to install docker
 sudo dnf -y install dnf-plugins-core
 
@@ -12,17 +28,45 @@ sudo dnf -y install dnf-plugins-core
 # Need to add, user to the docker group. to get docker command access.
 sudo usermod -aG docker ec2-user
 
-Home location of docker Docker/var/lib/docker 
-While ceating the ec2 instance I have allocated 50GB storage 
-df -hT = to check the file system
 
-we allocated 2 GB to   /dev/mapper/RootVG-varVol    xfs       2.0G  583M  1.4G  30% /var
 
-now we need to claim 50 GB storage 
-To resize disk:
-sudo growpart /dev/nvme0n1 4
-sudo lvextend -L +30G /dev/RootVG/varVol
-sudo xfs_growfs /var
+
+Now I am installing Mongodb, catalogue, user, 
+Mongodb: mongo 7.0 
+and .js ()
+
+After installation 
+pull the code from git hub 
+run == docker build -t mongodb:1.0.0 . to build the image with tag and version
+run == docker run -d --name mongodb mongodb:1.0.0 image to build as container.
+
+
+## conatiner name is used as a DNS 
+
+
+
+Catalogue
+
+
+
+
+docker exec -it catalogue bash
+curl http://localhost:8080/health
+create network and 
+#docker network create roboshop_network
+disconnect default network for all the micro services
+
+#docker network disconnect bridge catalogue
+
+and connect the components to roboshop_network
+#docker network connect roboshop_network catalogue
+Note: If we are using default bridge network, containers cannot communicate with other conatiners using names,
+need to create own bridge network
+#docker run -d -p80:80 --network Roboshop --name frontend frontend:1.0.0
+
+
+##docker tag frontend:1.0.0 mahesh6419/frontend:1.0.0
+##docker push mahesh6419/frontend:1.0.0
 
 
 
